@@ -1,0 +1,80 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="admin-dashboard">
+  <h2 class="dashboard-title">Admin Dashboard</h2>
+
+  <!-- Stats Section -->
+  <div class="stats">
+    <div class="stat-card">
+      <h4>Total Users</h4>
+      <p>{{ stats.totalUsers }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Sellers</h4>
+      <p>{{ stats.totalSellers }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Buyers</h4>
+      <p>{{ stats.totalBuyers }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Admins</h4>
+      <p>{{ stats.totalAdmins }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Products</h4>
+      <p>{{ stats.totalProducts }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Orders</h4>
+      <p>{{ stats.totalOrders }}</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Users Table -->
+  <h3 class="section-title">User Management</h3>
+  <div class="table-container" *ngIf="!loading; else loadingTpl">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="role-tag {{ user.role }}">{{ user.role }}</span>
+          </td>
+          <td>
+            <span
+              class="status-tag"
+              [ngClass]="{ active: user.isActive, blocked: !user.isActive }"
+            >
+              {{ user.isActive ? "Active" : "Blocked" }}
+            </span>
+          </td>
+          <td>
+            <button
+              class="action-btn"
+              [ngClass]="user.isActive ? 'block' : 'unblock'"
+              (click)="toggleUser(user._id)"
+            >
+              {{ user.isActive ? "Block" : "Unblock" }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #loadingTpl>
+    <p class="loading">Loading users...</p>
+  </ng-template>
+</div>

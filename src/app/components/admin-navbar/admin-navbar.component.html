@@ -1,0 +1,26 @@
+<nav class="admin-navbar">
+  <div class="navbar-left">
+    <div class="logo">
+      <img src="assets/logo.jpg" alt="TAPROBANE" />
+      <span class="brand-name">Admin Panel</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+      </li>
+      <li><a routerLink="/admin/users" routerLinkActive="active">Users</a></li>
+      <li>
+        <a routerLink="/admin/products" routerLinkActive="active">Products</a>
+      </li>
+      <li>
+        <a routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+      </li>
+      <li><a routerLink="/admin/blogs" routerLinkActive="active">Blog</a></li>
+    </ul>
+  </div>
+
+  <div class="navbar-right">
+    <span class="admin-name">Hi, {{ adminName }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</nav>

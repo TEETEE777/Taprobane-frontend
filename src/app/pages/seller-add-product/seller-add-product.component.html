@@ -1,0 +1,62 @@
+<div class="add-product-form">
+  <h2>Add New Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <label>Name</label>
+    <input type="text" formControlName="name" />
+    <label>Category</label>
+    <select formControlName="category">
+      <option value="clothing">Clothing</option>
+      <option value="bags">Bags</option>
+      <option value="accessories">Accessories</option>
+      <option value="decor">Decor</option>
+    </select>
+    <label>Price</label>
+    <input type="number" formControlName="price" />
+
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+
+    <label>Stock</label>
+    <input type="number" formControlName="stock" />
+
+    <label>Thumbnail Image</label>
+    <div class="file-upload">
+      <label for="fileInput" class="file-label">Choose Image</label>
+      <span class="file-name">{{
+        selectedFile?.name || "No file selected"
+      }}</span>
+      <input
+        id="fileInput"
+        type="file"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
+    </div>
+
+    <label>Material Type</label>
+    <select formControlName="materialType">
+      <option value="organic cotton">Organic Cotton</option>
+      <option value="bamboo">Bamboo</option>
+      <option value="jute">Jute</option>
+      <option value="plastic">Plastic</option>
+      <option value="metal">Metal</option>
+    </select>
+
+    <label>Packaging Type</label>
+    <select formControlName="packagingType">
+      <option value="paper">Paper</option>
+      <option value="recycled cardboard">Recycled Cardboard</option>
+      <option value="plastic">Plastic</option>
+      <option value="no packaging">No Packaging</option>
+    </select>
+
+    <label>Carbon Source</label>
+    <select formControlName="carbonSource">
+      <option value="local">Local</option>
+      <option value="regional">Regional</option>
+      <option value="imported">Imported</option>
+    </select>
+
+    <button type="submit">Add Product</button>
+  </form>
+</div>

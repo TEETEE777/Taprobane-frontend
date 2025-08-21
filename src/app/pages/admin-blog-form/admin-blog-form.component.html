@@ -1,0 +1,24 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="blog-form">
+  <h2>{{ blogId ? "Edit Blog" : "New Blog" }}</h2>
+
+  <label>Title</label>
+  <input type="text" [(ngModel)]="title" />
+
+  <label>Excerpt</label>
+  <textarea [(ngModel)]="excerpt"></textarea>
+
+  <label>Content</label>
+  <textarea [(ngModel)]="content" rows="8"></textarea>
+
+  <label>Image URL</label>
+  <input type="text" [(ngModel)]="imageUrl" />
+
+  <label>Category</label>
+  <input type="text" [(ngModel)]="category" />
+
+  <label>Tags (comma separated)</label>
+  <input type="text" [(ngModel)]="tags" />
+
+  <button (click)="saveBlog()">{{ blogId ? "Update" : "Create" }} Blog</button>
+</div>

@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <!-- Header -->
+  <div class="hero-banner">
+    <div class="hero-left">
+      <img src="assets/logo.jpg" alt="Taprobane Logo" class="logo" />
+      <p class="slogan-title">Your Sustainable</p>
+      <p class="slogan-line">Shopping</p>
+      <p class="slogan-line">Destination</p>
+
+      <p class="slogan-desc">
+        Discover Sustainability. Embrace Taprobane.<br />
+        Your Eco-Friendly Haven for Conscious Shopping.
+      </p>
+
+      <button
+        pButton
+        class="shop-btn"
+        label="SHOP NOW"
+        (click)="scrollToProducts()"
+      ></button>
+
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="What are you looking for?"
+          [(ngModel)]="searchQuery"
+        />
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img src="assets/productpage.png" alt="Hero Image" />
+    </div>
+  </div>
+  <!-- Filters Section -->
+  <div class="filters">
+    <!-- Eco Score Filter -->
+    <label>
+      Eco Score
+      <select [(ngModel)]="selectedEcoScore">
+        <option value="">All</option>
+        <option value="80">80+ (High)</option>
+        <option value="50">50+ (Medium)</option>
+        <option value="0">All Scores</option>
+      </select>
+    </label>
+
+    <!-- Material Filter -->
+    <label>
+      Material
+      <select [(ngModel)]="selectedMaterial">
+        <option value="">All</option>
+        <option value="organic cotton">Organic Cotton</option>
+        <option value="bamboo">Bamboo</option>
+        <option value="jute">Jute</option>
+        <option value="metal">Metal</option>
+        <option value="plastic">Plastic</option>
+      </select>
+    </label>
+
+    <!-- Price Filter -->
+    <label>
+      Max Price
+      <input
+        type="range"
+        min="0"
+        max="5000"
+        step="100"
+        [(ngModel)]="maxPrice"
+      />
+      <span>{{ maxPrice }} Rs</span>
+    </label>
+  </div>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <p-toast></p-toast>
+    <h2>Our Best-Selling Sustainable Products</h2>
+    <div class="product-grid">
+      <div *ngFor="let product of filteredProducts" class="product-card">
+        <img [src]="'http://localhost:3000' + product.thumbnail" />
+        <h3>{{ product.name }}</h3>
+        <p class="price">
+          <strong>{{ product.price }} Rs.</strong>
+          <del>{{ product.oldPrice }} Rs.</del>
+        </p>
+        <p class="eco-score">
+          🌿 Eco Score: {{ product.ecoScore || "N/A" }}
+          <span
+            [ngClass]="{
+              'badge-green': product.ecoScore >= 80,
+              'badge-yellow': product.ecoScore >= 50 && product.ecoScore < 80,
+              'badge-red': product.ecoScore < 50
+            }"
+          >
+            {{ getEcoLabel(product.ecoScore) }}
+          </span>
+        </p>
+
+        <p class="reviews">{{ product.reviews }} Reviews</p>
+        <div class="button-group">
+          <!-- Add to Cart (icon only) -->
+          <button pButton class="icon-cart-btn" (click)="addToCart(product)">
+            <i class="pi pi-shopping-cart"></i>
+          </button>
+
+          <!-- Buy Now (green) -->
+          <button pButton class="buy-now-btn" (click)="buyNow(product)">
+            Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

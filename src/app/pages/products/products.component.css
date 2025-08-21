@@ -1,0 +1,369 @@
+/* Base container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  font-family: "Montserrat", sans-serif;
+  padding: 20px;
+}
+
+.hero-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: rgba(193, 220, 220, 0.5);
+  border-radius: 30px;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.slogan-title {
+  font-size: 26px;
+  font-weight: 500;
+  color: black;
+  margin: 0;
+}
+
+.slogan-line {
+  font-size: 52px;
+  font-weight: 800;
+  color: #28a98b;
+  line-height: 1;
+  margin: 0;
+}
+
+.slogan-desc {
+  font-size: 16px;
+  color: #444;
+  max-width: 450px;
+  line-height: 1.5;
+}
+
+.shop-btn {
+  background-color: #28a98b;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(40, 169, 139, 0.4);
+  border: none;
+  width: fit-content;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  max-width: 400px;
+}
+
+.search-box input {
+  border: none;
+  padding: 12px;
+  flex-grow: 1;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-box button {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-box img {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-right img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
+/* Products Section */
+.products-section {
+  text-align: center;
+}
+
+.products-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/* Product Card */
+/* Updated Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Updated Product Card */
+.product-card {
+  background: white;
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #28a98b;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left; /* 👈 Changed to left-aligned */
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin: 5px 0;
+}
+
+.price {
+  font-size: 16px;
+  color: #333;
+  margin: 4px 0;
+}
+
+.price del {
+  color: red;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.reviews {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  border-color: #23a17f;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Cart Icon Button (lighter green) */
+.icon-cart-btn {
+  background-color: #a4d4c8; /* soft mint green */
+  color: #ffffff;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+.icon-cart-btn:hover {
+  background-color: #85c6b6;
+}
+
+/* Buy Now Button (main brand green) */
+.buy-now-btn {
+  background-color: #28a98b;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buy-now-btn:hover {
+  background-color: #23987c;
+}
+
+.products {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #28a98b;
+}
+
+.eco-score {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.badge-green {
+  background-color: #c1eac5;
+  color: #1b5e20;
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-size: 13px;
+}
+
+.badge-yellow {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-size: 13px;
+}
+
+.badge-red {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-size: 13px;
+}
+/* Filter Container */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 25px 30px;
+  background-color: #f2f9f7;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(40, 169, 139, 0.12);
+  border: 1px solid #d4ece7;
+}
+
+/* Individual filter group */
+.filters label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+  min-width: 160px;
+  font-weight: 500;
+}
+
+/* Dropdowns and inputs */
+.filters select,
+.filters input[type="number"] {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.filters select:focus,
+.filters input[type="number"]:focus {
+  border-color: #28a98b;
+}
+
+/* 🎯 Price Range Slider Custom Styling */
+.filters input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #c8f0e4; /* Light mint green track */
+  outline: none;
+  transition: background 0.3s ease;
+  margin-top: 15px;
+}
+
+.filters input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #28a98b; /* Brand green thumb */
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.filters input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #28a98b;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+/* Displaying range values */
+.filters span {
+  font-size: 13px;
+  color: #444;
+  margin-top: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .filters label {
+    width: 100%;
+    max-width: 300px;
+  }
+}

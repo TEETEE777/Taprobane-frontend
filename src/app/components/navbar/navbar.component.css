@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Added shadow border */
+  border-radius: 5px; /* Slightly rounded corners */
+
+  .logo img {
+    height: 40px; /* Adjust the logo size */
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 70px;
+
+    li {
+      position: relative;
+    }
+
+    li a {
+      text-decoration: none;
+      font-size: 18px; /* Increased font size */
+      color: #000;
+      font-weight: 500;
+      padding: 10px 15px;
+      transition: all 0.3s ease-in-out;
+    }
+    li a.active {
+      font-weight: 700;
+    }
+
+    li a:hover {
+      color: #000;
+    }
+    /* Hover effect: Green square */
+    li a::before {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 130%;
+      background: rgba(40, 169, 139, 0.15);
+      border-radius: 5px;
+      top: -15%;
+      left: -10%;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    li a:hover::before {
+      opacity: 1;
+    }
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+  }
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 20px;
+
+  .login {
+    background: transparent;
+    border: 1px solid #1a6151;
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+      background: rgba(26, 97, 81, 0.1);
+    }
+  }
+
+  .signup {
+    background: #c1dcdc;
+    border: none;
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+      background: #a8d3c8;
+    }
+  }
+}
+.logout {
+  padding: 6px 15px;
+  font-size: 14px;
+  background-color: #e2214b;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout:hover {
+  background-color: #b90f0f;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcome {
+  margin-right: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .auth-buttons {
+    gap: 10px;
+  }
+}

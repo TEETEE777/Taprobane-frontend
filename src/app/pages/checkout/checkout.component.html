@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="checkout-wrapper">
+  <!-- Order Summary Section -->
+  <div class="order-box">
+    <h2>Your Order</h2>
+    <div class="order-header">
+      <span>Product</span>
+      <span>Subtotal (LKR)</span>
+    </div>
+
+    <div class="order-item" *ngFor="let item of cartItems">
+      <img [src]="'http://localhost:3000' + item.image" alt="Product image" />
+
+      <div class="item-info">
+        <p>{{ item.name }} - {{ item.color }} × {{ item.quantity }}</p>
+      </div>
+      <div class="item-price">LKR {{ item.price * item.quantity }}</div>
+    </div>
+
+    <div class="order-total">
+      <span>Total</span>
+      <strong>LKR {{ total }}</strong>
+    </div>
+  </div>
+
+  <!-- Delivery Form Section -->
+  <form [formGroup]="checkoutForm" class="delivery-box" (ngSubmit)="onSubmit()">
+    <h2>Delivery Details</h2>
+
+    <div class="input-row">
+      <input formControlName="firstName" placeholder="First Name*" />
+      <input formControlName="lastName" placeholder="Last Name*" />
+    </div>
+
+    <input formControlName="address" placeholder="Address*" />
+    <input formControlName="email" placeholder="Email" />
+
+    <div class="phone-group">
+      <input value="+94" disabled class="code-box" />
+      <input formControlName="phone" placeholder="Mobile Number*" />
+    </div>
+
+    <textarea
+      formControlName="notes"
+      placeholder="Notes about your order (optional)"
+    ></textarea>
+
+    <div class="actions">
+      <button type="button" class="link-button" (click)="goBackToCart()">
+        Return to Cart
+      </button>
+      <button type="submit" class="main-button">Continue to Checkout</button>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,42 @@
+<app-seller-navbar></app-seller-navbar>
+<div class="my-products-container">
+  <h2>My Products</h2>
+
+  <button class="add-btn" routerLink="/seller-add-product">
+    ➕ Add Product
+  </button>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading && products.length === 0">No products added yet.</div>
+
+  <div class="product-grid" *ngIf="!loading">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="'http://localhost:3000' + product.thumbnail" />
+      <h3>{{ product.name }}</h3>
+      <p>Category: {{ product.category }}</p>
+      <p>Price: {{ product.price }} Rs.</p>
+      <p>Stock: {{ product.stock }}</p>
+      <p class="eco">
+        Eco Score:
+        <span
+          [ngClass]="{
+            high: product.ecoScore >= 80,
+            medium: product.ecoScore >= 50 && product.ecoScore < 80,
+            low: product.ecoScore < 50
+          }"
+        >
+          {{ product.ecoScore }}/100
+        </span>
+      </p>
+
+      <div class="actions">
+        <button (click)="goToEdit(product._id)">Edit</button>
+        <button class="delete-btn" (click)="deleteProduct(product._id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

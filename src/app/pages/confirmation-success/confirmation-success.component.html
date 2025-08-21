@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="success-wrapper">
+  <div class="confirmation-box">
+    <h1>🎉 Order Confirmed!</h1>
+    <p>Your payment was successful and your order is now being processed.</p>
+
+    <div class="summary-section">
+      <h3>Order Summary</h3>
+      <div class="order-item" *ngFor="let item of order?.items">
+        <img
+          [src]="item.image || '/assets/placeholder.png'"
+          alt="Product image"
+        />
+        <div>
+          <p>{{ item.name }} (x{{ item.quantity }})</p>
+          <p>LKR {{ item.price * item.quantity }}</p>
+        </div>
+      </div>
+
+      <div class="summary-line">
+        <strong>Total Paid:</strong>
+        <span>LKR {{ order?.total + 300 }}</span>
+      </div>
+    </div>
+
+    <div class="delivery-section">
+      <h3>Delivery To</h3>
+      <p>{{ order?.delivery.firstName }} {{ order?.delivery.lastName }}</p>
+      <p>{{ order?.delivery.address }}</p>
+      <p>{{ order?.delivery.email }}</p>
+      <p>+94 {{ order?.delivery.phone }}</p>
+    </div>
+
+    <button class="home-button" (click)="router.navigate(['/'])">
+      Back to Home
+    </button>
+  </div>
+</div>
+
+<app-footer></app-footer>

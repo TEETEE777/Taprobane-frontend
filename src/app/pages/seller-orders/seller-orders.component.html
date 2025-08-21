@@ -1,0 +1,58 @@
+<app-seller-navbar></app-seller-navbar>
+
+<div class="seller-orders-container">
+  <h2>My Orders</h2>
+
+  <div *ngIf="orders.length === 0">
+    <p>No orders placed yet.</p>
+  </div>
+
+  <div *ngFor="let order of orders" class="order-card">
+    <h4>Order ID: {{ order._id }}</h4>
+    <p><strong>Placed On:</strong> {{ order.createdAt | date : "medium" }}</p>
+
+    <div class="status-badges">
+      <span class="badge status" [ngClass]="order.shippingStatus.toLowerCase()">
+        {{ order.shippingStatus }}
+      </span>
+      <span class="badge payment" [ngClass]="order.paymentStatus.toLowerCase()">
+        Payment: {{ order.paymentStatus }}
+      </span>
+    </div>
+
+    <strong>Shipping Status:</strong>
+    <div class="shipping-dropdown" (click)="toggleDropdown(order)">
+      {{ order.shippingStatus }}
+      <ul *ngIf="order.showDropdown">
+        <li
+          *ngFor="
+            let status of [
+              'Pending',
+              'Processing',
+              'Shipped',
+              'In Transit',
+              'Delivered'
+            ]
+          "
+          (click)="updateShippingStatus(order, status)"
+        >
+          {{ status }}
+        </li>
+      </ul>
+    </div>
+
+    <ul>
+      <li *ngFor="let item of order.items">
+        {{ item.name }} x{{ item.quantity }} – Rs.
+        {{ item.price * item.quantity }}
+      </li>
+    </ul>
+
+    <p><strong>Total:</strong> Rs. {{ order.grandTotal }}</p>
+    <p><strong>Delivery Address:</strong> {{ order.delivery.address }}</p>
+    <p>
+      <strong>Contact:</strong> {{ order.delivery.phone }} |
+      {{ order.delivery.email }}
+    </p>
+  </div>
+</div>

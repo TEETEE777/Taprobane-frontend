@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="orders-container">
+  <h2>My Orders</h2>
+
+  <div *ngIf="orders.length === 0">
+    <p>You have not placed any orders yet.</p>
+  </div>
+
+  <div *ngFor="let order of orders" class="order-card">
+    <h3>Order #{{ order._id }}</h3>
+    <p>Placed On: {{ order.createdAt | date }}</p>
+
+    <div class="status-badges">
+      <span class="badge status" [ngClass]="order.shippingStatus.toLowerCase()">
+        {{ order.shippingStatus }}
+      </span>
+      <span class="badge payment" [ngClass]="order.paymentStatus.toLowerCase()">
+        Payment: {{ order.paymentStatus }}
+      </span>
+    </div>
+
+    <p><strong>Payment Method:</strong> {{ order.paymentMethod }}</p>
+
+    <ul>
+      <li *ngFor="let item of order.items">
+        {{ item.name }} x{{ item.quantity }} – Rs.
+        {{ item.price * item.quantity }}
+      </li>
+    </ul>
+
+    <p><strong>Total:</strong> Rs. {{ order.total }}</p>
+    <p><strong>Delivery Address:</strong> {{ order.delivery.address }}</p>
+    <p>
+      <strong>Contact:</strong> {{ order.delivery.phone }} |
+      {{ order.delivery.email }}
+    </p>
+  </div>
+</div>
+
+<app-footer></app-footer>

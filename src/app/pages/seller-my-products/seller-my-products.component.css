@@ -1,0 +1,130 @@
+.my-products-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+}
+
+.my-products-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #1f5f4a;
+}
+
+.add-btn {
+  background-color: #1f5f4a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0 auto 30px;
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #174d3a;
+}
+
+.product-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.product-card {
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  color: #222;
+}
+
+.product-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.eco {
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.eco span {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.eco span.high {
+  background: #e6f4ea;
+  color: #1b5e20;
+}
+
+.eco span.medium {
+  background: #fff8e1;
+  color: #8a6d00;
+}
+
+.eco span.low {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.product-card button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  opacity: 0.9;
+}
+
+.product-card button:not(.delete-btn) {
+  background-color: #1f5f4a;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e53935;
+  color: white;
+}

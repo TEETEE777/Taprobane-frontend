@@ -1,0 +1,76 @@
+<div class="login-container">
+  <p-toast></p-toast>
+  <div class="login-box">
+    <img src="assets/logo.jpg" alt="TAPROBANE" class="logo" />
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <label>Email address <span class="required">*</span></label>
+      <input
+        id="email"
+        type="email"
+        pInputText
+        formControlName="email"
+        placeholder="Enter your email address"
+        class="p-inputtext"
+      />
+
+      <p-message
+        *ngIf="isFieldInvalid('email')"
+        severity="error"
+        text="Valid email is required"
+        class="p-error"
+      ></p-message>
+
+      <label>Password <span class="required">*</span></label>
+      <input
+        id="password"
+        type="password"
+        pPassword
+        formControlName="password"
+        placeholder="Enter your password"
+        class="p-inputtext"
+      />
+      <p-message
+        *ngIf="isFieldInvalid('password')"
+        severity="error"
+        text="Password must be at least 6 characters long"
+        class="p-error"
+      ></p-message>
+
+      <button
+        pButton
+        type="submit"
+        label="Login"
+        class="p-button-success"
+        [disabled]="loginForm.invalid"
+      ></button>
+    </form>
+
+    <p class="signup-text">
+      Don't have an account?
+      <a
+        routerLink="/app-register"
+        class="signup-link"
+        (click)="navigateToRegister()"
+        >Sign up</a
+      >
+    </p>
+
+    <div class="divider">
+      <hr />
+      <span>OR</span>
+      <hr />
+    </div>
+
+    <div class="social-login">
+      <button class="social-btn" (click)="loginWithGoogle()">
+        <img src="assets/google.png" alt="Google" />
+      </button>
+      <button class="social-btn">
+        <img src="assets/facebook.png" alt="Facebook" />
+      </button>
+    </div>
+  </div>
+  <div class="illustration">
+    <img src="assets/login.jpg" alt="Login Illustration" />
+  </div>
+</div>

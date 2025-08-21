@@ -1,0 +1,27 @@
+<app-seller-navbar></app-seller-navbar>
+<div class="seller-dashboard">
+  <h2 class="title">Seller Dashboard</h2>
+  <p class="subtitle">
+    Manage your products, view orders, and track performance
+  </p>
+
+  <div class="dashboard-options">
+    <div class="card" (click)="navigateTo('seller-products')" tabindex="0">
+      <i class="pi pi-box icon"></i>
+      <h3>My Products</h3>
+      <p>View and manage your listed items</p>
+    </div>
+
+    <div class="card" (click)="navigateTo('seller-add-product')" tabindex="0">
+      <i class="pi pi-plus-circle icon"></i>
+      <h3>Add Product</h3>
+      <p>Upload new eco-friendly items</p>
+    </div>
+
+    <div class="card" (click)="navigateTo('seller-orders')" tabindex="0">
+      <i class="pi pi-truck icon"></i>
+      <h3>My Orders</h3>
+      <p>Track customer orders and delivery</p>
+    </div>
+  </div>
+</div>

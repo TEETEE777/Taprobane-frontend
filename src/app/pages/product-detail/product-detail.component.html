@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+
+<div class="product-detail-container" *ngIf="product">
+  <div class="product-image">
+    <img [src]="'http://localhost:3000' + product.thumbnail" />
+  </div>
+
+  <div class="product-info">
+    <h1>{{ product.name }}</h1>
+
+    <p class="price">
+      <strong>{{ product.price }} Rs.</strong>
+      <del *ngIf="product.oldPrice">{{ product.oldPrice }} Rs.</del>
+    </p>
+
+    <div class="eco-score-badge" *ngIf="product.ecoScore !== undefined">
+      <span class="eco-label">🌿 Eco Score:</span>
+      <span
+        class="eco-value"
+        [ngClass]="{
+          high: product.ecoScore >= 80,
+          medium: product.ecoScore >= 50 && product.ecoScore < 80,
+          low: product.ecoScore < 50
+        }"
+      >
+        {{ product.ecoScore }}/100 • {{ getEcoLabel(product.ecoScore) }}
+      </span>
+    </div>
+    <p class="reviews">
+      <span>
+        Average Rating:
+        <span *ngFor="let star of [1, 2, 3, 4, 5]">
+          <i
+            class="pi"
+            [ngClass]="star <= averageRating ? 'pi-star-fill' : 'pi-star'"
+            style="color: #28a98b"
+          ></i>
+        </span>
+        ({{ reviews.length }} {{ reviews.length === 1 ? "review" : "reviews" }})
+      </span>
+    </p>
+
+    <p class="description">{{ product.description }}</p>
+
+    <div class="quantity-box">
+      <label for="qty">Qty:</label>
+      <input
+        id="qty"
+        type="number"
+        [(ngModel)]="quantity"
+        min="1"
+        class="qty-input"
+      />
+    </div>
+
+    <button pButton class="buy-now-btn" (click)="addToCart()">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+<div class="reviews-section" *ngIf="product">
+  <h3>Customer Reviews</h3>
+
+  <div *ngIf="loadingReviews">Loading reviews...</div>
+
+  <div *ngIf="!loadingReviews && reviews.length === 0">
+    <p>No reviews yet.</p>
+  </div>
+
+  <div *ngFor="let review of reviews" class="review">
+    <p>
+      <strong>{{ review.userEmail }}</strong> rated
+      <span *ngFor="let star of [1, 2, 3, 4, 5]">
+        <i
+          class="pi"
+          [ngClass]="star <= review.rating ? 'pi-star-fill' : 'pi-star'"
+          style="color: #28a98b"
+        ></i>
+      </span>
+    </p>
+    <p>{{ review.comment }}</p>
+    <hr />
+  </div>
+
+  <div *ngIf="userId" class="review-form">
+    <h4>Leave a Review</h4>
+    <label>Rating (1–5)</label>
+    <input
+      type="number"
+      [(ngModel)]="rating"
+      min="1"
+      max="5"
+      class="rating-input"
+    />
+
+    <label>Comment</label>
+    <textarea [(ngModel)]="comment" rows="3" class="comment-input"></textarea>
+
+    <button
+      (click)="submitReview()"
+      [disabled]="!rating || rating < 1 || rating > 5 || !comment.trim().length"
+      class="submit-btn"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
+<app-footer></app-footer>

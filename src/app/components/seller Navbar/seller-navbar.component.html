@@ -1,0 +1,17 @@
+<nav class="seller-navbar">
+  <div class="logo">Taprobane Seller</div>
+
+  <ul class="nav-links">
+    <li routerLink="/seller-dashboard" routerLinkActive="active">Dashboard</li>
+    <li routerLink="/seller-products" routerLinkActive="active">My Products</li>
+    <li routerLink="/seller-add-product" routerLinkActive="active">
+      Add Product
+    </li>
+    <li routerLink="/seller-orders" routerLinkActive="active">Orders</li>
+  </ul>
+
+  <div class="profile-area">
+    <span>{{ sellerName }}</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>

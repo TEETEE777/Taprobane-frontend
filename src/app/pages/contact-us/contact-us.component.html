@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="contact-section">
+  <div class="contact-wrapper">
+    <!-- Left: Contact Info -->
+    <div class="contact-info">
+      <img src="assets/productpage.png" alt="Contact Illustration" />
+      <p><strong>Contact</strong><br />taprobanesl&#64;green.com</p>
+      <p><strong>Based in</strong><br />Colombo 07, Sri Lanka</p>
+      <div class="social-icons">
+        <i class="pi pi-facebook"></i>
+        <i class="pi pi-instagram"></i>
+        <i class="pi pi-twitter"></i>
+      </div>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form (ngSubmit)="onSubmit()">
+        <label>Full Name</label>
+        <input type="text" [(ngModel)]="fullName" name="fullName" required />
+
+        <label>E-mail</label>
+        <input type="email" [(ngModel)]="email" name="email" required />
+
+        <label>Message</label>
+        <textarea
+          [(ngModel)]="message"
+          name="message"
+          rows="5"
+          required
+        ></textarea>
+
+        <button type="submit">Contact Us</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

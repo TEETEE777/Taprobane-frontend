@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="text-content">
+      <h1>Go Green!</h1>
+
+      <div class="stats">
+        <div class="stat-item">
+          <h2>50+</h2>
+          <p>Products</p>
+        </div>
+        <div class="divider"></div>
+        <div class="stat-item">
+          <h2>100+</h2>
+          <p>Customers</p>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="What are you looking for?"
+          [(ngModel)]="searchQuery"
+        />
+        <button (click)="search()">
+          <img src="assets/search.png" alt="Search" />
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/girl.png" alt="Eco-friendly illustration" />
+    </div>
+  </div>
+</div>
+
+<div class="features-section">
+  <h2>Why Choose TAPROBANE?</h2>
+  <div class="features">
+    <div *ngFor="let feature of features">
+      <img [src]="feature.icon" [alt]="feature.title" class="feature-icon" />
+      <h3>{{ feature.title }}</h3>
+      <p>{{ feature.description }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="reviews-section">
+  <h2>Customer Reviews</h2>
+</div>
+<div class="reviews-slider">
+  <div class="review-card" *ngFor="let review of reviews">
+    <img [src]="review.image" alt="{{ review.name }}" class="customer-photo" />
+    <h3>{{ review.name }}</h3>
+    <p>“{{ review.comment }}”</p>
+    <div class="star-rating">
+      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+        <span [class.filled]="i < review.rating">★</span>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation Arrows for Slider -->
+<div class="slider-controls">
+  <button (click)="prevSlide()">‹</button>
+  <button (click)="nextSlide()">›</button>
+</div>
+
+<app-footer></app-footer>

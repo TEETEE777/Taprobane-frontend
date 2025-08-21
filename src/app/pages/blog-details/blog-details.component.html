@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="blog-details-container" *ngIf="blog">
+  <div class="blog-header">
+    <h1>{{ blog.title }}</h1>
+    <p class="blog-meta">
+      <span>By {{ blog.authorId?.name || "Unknown" }}</span> |
+      <span>{{ blog.createdAt | date : "mediumDate" }}</span>
+    </p>
+  </div>
+
+  <div class="blog-image" *ngIf="blog.image">
+    <img [src]="blog.image" alt="{{ blog.title }}" />
+  </div>
+
+  <div class="blog-content">
+    <p>{{ blog.content }}</p>
+  </div>
+
+  <div class="blog-tags" *ngIf="blog.tags?.length">
+    <span *ngFor="let tag of blog.tags" class="tag">{{ tag }}</span>
+  </div>
+</div>
+
+<app-footer></app-footer>

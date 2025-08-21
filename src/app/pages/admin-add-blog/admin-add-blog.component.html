@@ -1,0 +1,30 @@
+<div class="add-blog-container">
+  <h2>Create New Blog</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label>Title</label>
+    <input type="text" [(ngModel)]="blog.title" name="title" required />
+
+    <label>Excerpt</label>
+    <textarea [(ngModel)]="blog.excerpt" name="excerpt" required></textarea>
+
+    <label>Content</label>
+    <textarea
+      [(ngModel)]="blog.content"
+      name="content"
+      rows="6"
+      required
+    ></textarea>
+
+    <label>Image URL</label>
+    <input type="text" [(ngModel)]="blog.imageUrl" name="imageUrl" required />
+
+    <label>Category</label>
+    <input type="text" [(ngModel)]="blog.category" name="category" />
+
+    <label>Tags (comma separated)</label>
+    <input type="text" [(ngModel)]="blog.tags" name="tags" />
+
+    <button type="submit">Create Blog</button>
+  </form>
+</div>

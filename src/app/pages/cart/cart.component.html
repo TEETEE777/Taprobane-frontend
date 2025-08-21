@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="cart-container" *ngIf="cartItems.length; else emptyCart">
+  <div class="cart-box">
+    <div class="cart-header">
+      <h2 class="cart-title">YOUR CART</h2>
+      <button class="clear-cart-btn" (click)="clearCart()">
+        CLEAR SHOPPING CART
+      </button>
+    </div>
+
+    <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+      <button class="remove-btn" (click)="removeItem(item.productId)">×</button>
+      <img
+        [src]="item.image || '/assets/placeholder.png'"
+        alt="Product image"
+      />
+      <div class="item-details">
+        <p class="product-name">{{ item.name }}</p>
+        <div class="detail-grid">
+          <span class="color">{{ item.color || "N/A" }}</span>
+          <span class="price">LKR {{ item.price.toFixed(2) }}</span>
+          <select
+            class="qty-select"
+            [(ngModel)]="item.quantity"
+            (change)="updateQuantity(item.productId, item.quantity)"
+          >
+            <option
+              *ngFor="let q of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+              [value]="q"
+            >
+              {{ q }}
+            </option>
+          </select>
+          <span class="subtotal"
+            >LKR {{ (item.price * item.quantity).toFixed(2) }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-total-row">
+      <span class="label">Total</span>
+      <span class="amount">LKR {{ total.toFixed(2) }}</span>
+    </div>
+
+    <div class="cart-actions">
+      <button class="btn update" (click)="loadCart()">Update Cart</button>
+      <button class="btn checkout" (click)="onCheckoutClick()">
+        Check Out
+      </button>
+      <button class="btn continue" (click)="onContinueClick()">
+        Continue to shopping
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>
+
+<app-footer></app-footer>

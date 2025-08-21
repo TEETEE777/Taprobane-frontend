@@ -1,0 +1,78 @@
+<div class="register-container">
+  <div class="register-box">
+    <img src="assets/logo.jpg" alt="TAPROBANE" class="logo" />
+    <h2>Create your account.</h2>
+
+    <form (ngSubmit)="register()">
+      <label>Full name <span class="required">*</span></label>
+      <input
+        type="text"
+        name="fullName"
+        [(ngModel)]="fullName"
+        placeholder="Enter your full name"
+        required
+      />
+
+      <label>Email address <span class="required">*</span></label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Enter your email address"
+        required
+      />
+
+      <label>Password <span class="required">*</span></label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Enter a password"
+        required
+      />
+
+      <label>Confirm Password <span class="required">*</span></label>
+      <input
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        placeholder="Confirm your password"
+        required
+      />
+
+      <label>User Role <span class="required">*</span></label>
+      <select name="role" [(ngModel)]="role" required>
+        <option value="buyer">Buyer</option>
+        <option value="seller">Seller</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="login-text">
+      Already have an account?
+      <a routerLink="/app-login" class="login-link" (click)="navigateToLogin()"
+        >Login</a
+      >
+    </p>
+
+    <div class="divider">
+      <hr />
+      <span>OR</span>
+      <hr />
+    </div>
+
+    <div class="social-login">
+      <button class="social-btn" (click)="loginWithGoogle()">
+        <img src="assets/google.png" alt="Google" />
+      </button>
+      <button class="social-btn">
+        <img src="assets/facebook.png" alt="Facebook" />
+      </button>
+    </div>
+  </div>
+  <div class="illustration">
+    <img src="assets/login.jpg" alt="Register Illustration" />
+  </div>
+</div>

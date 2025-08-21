@@ -1,0 +1,30 @@
+<div class="blog-list-container">
+  <h2>Manage Blogs</h2>
+  <button (click)="createBlog()">+ New Blog</button>
+
+  <div *ngIf="blogs.length === 0">
+    <p>No blogs found</p>
+  </div>
+
+  <table *ngIf="blogs.length > 0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let blog of blogs">
+        <td>{{ blog.title }}</td>
+        <td>{{ blog.authorId?.name || "Admin" }}</td>
+        <td>{{ blog.createdAt | date }}</td>
+        <td>
+          <button (click)="editBlog(blog._id)">Edit</button>
+          <button (click)="deleteBlog(blog._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/logo.jpg" alt="TAPROBANE" />
+  </div>
+
+  <ul class="nav-links">
+    <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+    <li>
+      <a routerLink="/app-products" routerLinkActive="active">Products</a>
+    </li>
+    <li>
+      <a routerLink="/app-cart"
+        ><img src="assets/Vector.jpg" alt="Cart" class="icon" /> Cart</a
+      >
+    </li>
+    <li><a routerLink="/blogs" routerLinkActive="active">Blog</a></li>
+    <li>
+      <a routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
+    </li>
+
+    <li>
+      <a routerLink="/app-my-orders" routerLinkActive="active">My Orders</a>
+    </li>
+  </ul>
+
+  <div class="auth-buttons">
+    <ng-container *ngIf="!currentUser; else loggedIn">
+      <button class="login" (click)="onLoginClick()">Login</button>
+      <button class="signup" (click)="onRegisterClick()">Sign up</button>
+    </ng-container>
+
+    <ng-template #loggedIn>
+      <div class="user-info">
+        <span class="welcome">Hi, {{ currentUser?.email }}</span>
+        <button class="logout" (click)="onLogoutClick()">Logout</button>
+      </div>
+    </ng-template>
+  </div>
+</nav>
