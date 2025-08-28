@@ -36,12 +36,20 @@
         class="p-error"
       ></p-message>
 
+      <div class="captcha-container">
+        <re-captcha
+          siteKey="6LdOh7MrAAAAAER5Qq5dCHVGsWv3D5yiu8WLnuzZ"
+          (resolved)="onCaptchaResolved($event)"
+        >
+        </re-captcha>
+      </div>
+
       <button
         pButton
         type="submit"
         label="Login"
         class="p-button-success"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || !captchaResolved"
       ></button>
     </form>
 

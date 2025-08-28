@@ -179,3 +179,14 @@ body {
     }
   }
 }
+
+.captcha-container {
+  margin: 30px 0 20px; /* top, horizontal, bottom spacing */
+  display: flex;
+  justify-content: center; /* center the reCAPTCHA */
+}
+
+.recaptcha {
+  transform: scale(1); /* adjust scale if you want it bigger/smaller */
+  transform-origin: center;
+}

@@ -47,7 +47,15 @@
         <option value="admin">Admin</option>
       </select>
 
-      <button type="submit">Sign Up</button>
+      <div class="captcha-container">
+        <re-captcha
+          siteKey="6LdOh7MrAAAAAER5Qq5dCHVGsWv3D5yiu8WLnuzZ"
+          (resolved)="onCaptchaResolved($event)"
+        >
+        </re-captcha>
+      </div>
+
+      <button type="submit" [disabled]="!captchaResolved">Sign Up</button>
     </form>
 
     <p class="login-text">

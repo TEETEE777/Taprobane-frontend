@@ -18,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import * as jwtDecode from 'jwt-decode';
 import { HttpClientModule } from '@angular/common/http';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 interface DecodedToken {
   user: {
@@ -42,6 +43,7 @@ interface DecodedToken {
     MessageModule,
     ToastModule,
     HttpClientModule,
+    RecaptchaModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -73,7 +75,10 @@ export class LoginComponent {
       return;
     }
 
-    const userData = this.loginForm.value;
+    const userData = {
+      ...this.loginForm.value,
+      captchaToken: this.captchaToken,
+    };
 
     this.loginService.loginUser(userData).subscribe({
       next: (response) => {
@@ -144,5 +149,12 @@ export class LoginComponent {
 
   loginWithFacebook() {
     window.location.href = 'http://localhost:3000/api/auth/facebook';
+  }
+  captchaResolved: boolean = false;
+  captchaToken: string | null = null;
+
+  onCaptchaResolved(token: string | null) {
+    this.captchaResolved = !!token;
+    this.captchaToken = token;
   }
 }

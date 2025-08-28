@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RegisterService } from '../../services/register.service';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, RecaptchaModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -32,11 +33,17 @@ export class RegisterComponent {
       return;
     }
 
+    if (!this.captchaToken) {
+      alert('Please complete the captcha');
+      return;
+    }
+
     const userData = {
       fullName: this.fullName,
       email: this.email,
       password: this.password,
       role: this.role,
+      captchaToken: this.captchaToken,
     };
 
     this.registerService.registerUser(userData).subscribe(
@@ -58,5 +65,12 @@ export class RegisterComponent {
 
   loginWithFacebook() {
     window.location.href = 'http://localhost:3000/api/auth/facebook';
+  }
+  captchaResolved: boolean = false;
+  captchaToken: string | null = null;
+
+  onCaptchaResolved(token: string | null) {
+    this.captchaResolved = !!token;
+    this.captchaToken = token;
   }
 }
