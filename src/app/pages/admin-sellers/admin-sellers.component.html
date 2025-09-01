@@ -1,0 +1,76 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="sellers-page">
+  <h2 class="page-title">👨‍💼 Seller Management</h2>
+
+  <div *ngIf="loading" class="loading">⏳ Loading sellers...</div>
+
+  <div *ngIf="!loading && sellers.length > 0" class="table-wrapper">
+    <table class="sellers-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Joined</th>
+          <th class="action-col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let seller of sellers">
+          <td>{{ seller.fullName }}</td>
+          <td>{{ seller.email }}</td>
+          <td>
+            <span
+              class="status-tag"
+              [ngClass]="
+                seller.sellerStatus === 'pending'
+                  ? 'pending'
+                  : seller.sellerStatus === 'approved'
+                  ? 'approved'
+                  : 'rejected'
+              "
+            >
+              {{ seller.sellerStatus | titlecase }}
+            </span>
+          </td>
+          <td>{{ seller.createdAt | date : "mediumDate" }}</td>
+          <td>
+            <!-- Approve / Reject buttons for pending sellers -->
+            <ng-container
+              *ngIf="seller.sellerStatus === 'pending'; else statusActions"
+            >
+              <button class="approve" (click)="approveSeller(seller._id)">
+                Approve
+              </button>
+              <button class="reject" (click)="rejectSeller(seller._id)">
+                Reject
+              </button>
+            </ng-container>
+
+            <!-- Block / Unblock buttons for approved sellers -->
+            <ng-template #statusActions>
+              <button
+                class="block"
+                *ngIf="seller.isActive"
+                (click)="toggleStatus(seller._id, seller.isActive)"
+              >
+                Block
+              </button>
+              <button
+                class="unblock"
+                *ngIf="!seller.isActive"
+                (click)="toggleStatus(seller._id, seller.isActive)"
+              >
+                Unblock
+              </button>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && sellers.length === 0" class="no-data">
+    No sellers found.
+  </div>
+</div>

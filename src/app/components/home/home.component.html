@@ -47,24 +47,30 @@
 
 <div class="reviews-section">
   <h2>Customer Reviews</h2>
-</div>
-<div class="reviews-slider">
-  <div class="review-card" *ngFor="let review of reviews">
-    <img [src]="review.image" alt="{{ review.name }}" class="customer-photo" />
-    <h3>{{ review.name }}</h3>
-    <p>“{{ review.comment }}”</p>
-    <div class="star-rating">
-      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-        <span [class.filled]="i < review.rating">★</span>
-      </ng-container>
+
+  <div *ngIf="loadingReviews">Loading reviews...</div>
+
+  <div class="reviews-slider" *ngIf="!loadingReviews && reviews.length">
+    <div class="review-card" *ngFor="let review of reviews">
+      <h3>{{ review.userEmail }}</h3>
+      <p>“{{ review.comment }}”</p>
+      <div class="star-rating">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <span [class.filled]="i < review.rating">★</span>
+        </ng-container>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Navigation Arrows for Slider -->
-<div class="slider-controls">
-  <button (click)="prevSlide()">‹</button>
-  <button (click)="nextSlide()">›</button>
+  <div *ngIf="!loadingReviews && reviews.length === 0">
+    <p>No reviews yet.</p>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <div class="slider-controls" *ngIf="reviews.length">
+    <button (click)="prevSlide()">‹</button>
+    <button (click)="nextSlide()">›</button>
+  </div>
 </div>
 
 <app-footer></app-footer>

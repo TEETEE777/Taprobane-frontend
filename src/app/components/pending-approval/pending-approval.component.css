@@ -1,0 +1,83 @@
+.pending-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  text-align: center;
+  min-height: 70vh;
+  max-width: 480px;
+  margin: 3rem auto;
+  background: #e0eded; /* same as register-box background */
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: "Montserrat", sans-serif;
+}
+
+.pending-container .logo {
+  width: 130px;
+  margin-bottom: 15px;
+}
+
+.pending-container h2 {
+  font-size: 1.8rem;
+  color: #28a98b; /* main green */
+  margin-bottom: 1rem;
+}
+
+.pending-container .message {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.pending-container .message .status.pending {
+  font-weight: bold;
+  color: #1faa78; /* green accent */
+}
+
+.pending-container .sub-message {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.pending-container .status-message {
+  font-size: 0.95rem;
+  color: #28a98b;
+  font-weight: 600;
+  margin: 1rem 0;
+  min-height: 1.2rem;
+}
+
+.pending-container button {
+  font-weight: 600;
+  padding: 12px 0;
+  border-radius: 15px;
+  margin: 0.5rem 0;
+  width: 220px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.pending-container .primary-btn {
+  background-color: #28a98b; /* main green */
+  color: white !important;
+}
+
+.pending-container .primary-btn:hover {
+  background-color: #128167; /* hover darker green */
+}
+
+.pending-container .secondary-btn {
+  background-color: white;
+  color: #28a98b;
+  border: 2px solid #28a98b;
+}
+
+.pending-container .secondary-btn:hover {
+  background-color: #e0f2ef; /* light green hover */
+}

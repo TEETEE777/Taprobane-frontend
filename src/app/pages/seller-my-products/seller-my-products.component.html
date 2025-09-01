@@ -2,9 +2,7 @@
 <div class="my-products-container">
   <h2>My Products</h2>
 
-  <button class="add-btn" routerLink="/seller-add-product">
-    ➕ Add Product
-  </button>
+  <button class="add-btn" routerLink="/seller-add-product">Add Product</button>
 
   <div *ngIf="loading">Loading...</div>
   <div *ngIf="!loading && products.length === 0">No products added yet.</div>

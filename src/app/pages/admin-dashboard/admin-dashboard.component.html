@@ -1,39 +1,56 @@
 <app-admin-navbar></app-admin-navbar>
+
 <div class="admin-dashboard">
-  <h2 class="dashboard-title">Admin Dashboard</h2>
+  <h2 class="dashboard-title">📊 Admin Dashboard</h2>
 
   <!-- Stats Section -->
   <div class="stats">
-    <div class="stat-card">
-      <h4>Total Users</h4>
-      <p>{{ stats.totalUsers }}</p>
+    <div
+      class="stat-card"
+      *ngFor="
+        let item of [
+          { title: 'Total Users', value: stats.totalUsers, color: '#42a5f5' },
+          { title: 'Sellers', value: stats.totalSellers, color: '#ff9800' },
+          { title: 'Buyers', value: stats.totalBuyers, color: '#4caf50' },
+          { title: 'Admins', value: stats.totalAdmins, color: '#9c27b0' },
+          { title: 'Products', value: stats.totalProducts, color: '#009688' },
+          { title: 'Orders', value: stats.totalOrders, color: '#f44336' }
+        ]
+      "
+    >
+      <h4>{{ item.title }}</h4>
+      <p [style.color]="item.color">{{ item.value || 0 }}</p>
     </div>
-    <div class="stat-card">
-      <h4>Sellers</h4>
-      <p>{{ stats.totalSellers }}</p>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts">
+    <!-- Pie Chart (Chart.js) -->
+    <div class="chart-card">
+      <h3>User Roles Distribution</h3>
+      <div class="chart-wrapper" style="width: 300px; height: 300px">
+        <canvas *ngIf="showPieCanvas" #pieCanvas></canvas>
+      </div>
     </div>
-    <div class="stat-card">
-      <h4>Buyers</h4>
-      <p>{{ stats.totalBuyers }}</p>
-    </div>
-    <div class="stat-card">
-      <h4>Admins</h4>
-      <p>{{ stats.totalAdmins }}</p>
-    </div>
-    <div class="stat-card">
-      <h4>Products</h4>
-      <p>{{ stats.totalProducts }}</p>
-    </div>
-    <div class="stat-card">
-      <h4>Orders</h4>
-      <p>{{ stats.totalOrders }}</p>
+
+    <!-- Bar Chart (ng2-charts) -->
+    <div class="chart-card">
+      <h3>Products vs Orders</h3>
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="ordersProductsChartData"
+          [options]="ordersProductsChartOptions"
+          [type]="ordersProductsChartType"
+        ></canvas>
+      </div>
     </div>
   </div>
 
   <hr class="divider" />
 
   <!-- Users Table -->
-  <h3 class="section-title">User Management</h3>
+  <h3 class="section-title">👥 User Management</h3>
   <div class="table-container" *ngIf="!loading; else loadingTpl">
     <table class="users-table">
       <thead>
@@ -42,7 +59,7 @@
           <th>Email</th>
           <th>Role</th>
           <th>Status</th>
-          <th>Action</th>
+          <th class="action-col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -64,7 +81,7 @@
             <button
               class="action-btn"
               [ngClass]="user.isActive ? 'block' : 'unblock'"
-              (click)="toggleUser(user._id)"
+              (click)="toggleUser(user._id, user.isActive)"
             >
               {{ user.isActive ? "Block" : "Unblock" }}
             </button>
@@ -75,6 +92,6 @@
   </div>
 
   <ng-template #loadingTpl>
-    <p class="loading">Loading users...</p>
+    <p class="loading">⏳ Loading users...</p>
   </ng-template>
 </div>

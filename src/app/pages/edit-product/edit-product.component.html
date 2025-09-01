@@ -1,0 +1,59 @@
+<app-seller-navbar></app-seller-navbar>
+<div class="edit-product-container" *ngIf="product">
+  <h2>Edit Product</h2>
+
+  <form (ngSubmit)="updateProduct()" #editForm="ngForm">
+    <label>
+      Name:
+      <input type="text" [(ngModel)]="product.name" name="name" required />
+    </label>
+
+    <label>
+      Category:
+      <input
+        type="text"
+        [(ngModel)]="product.category"
+        name="category"
+        required
+      />
+    </label>
+
+    <label>
+      Price (Rs):
+      <input type="number" [(ngModel)]="product.price" name="price" required />
+    </label>
+
+    <label>
+      Stock:
+      <input type="number" [(ngModel)]="product.stock" name="stock" required />
+    </label>
+
+    <label>
+      Eco Score (0-100):
+      <input
+        type="number"
+        [(ngModel)]="product.ecoScore"
+        name="ecoScore"
+        min="0"
+        max="100"
+        required
+      />
+    </label>
+    <label>
+      Product Image:
+      <input type="file" (change)="onFileSelected($event)" />
+    </label>
+
+    <img *ngIf="previewUrl" [src]="previewUrl" alt="Preview" class="preview" />
+
+    <div class="buttons">
+      <button type="submit" [disabled]="!editForm.form.valid">
+        Update Product
+      </button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="loading">Loading product details...</div>
+<div *ngIf="error" class="error">{{ error }}</div>

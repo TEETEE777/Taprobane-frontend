@@ -19,6 +19,9 @@ import { SellerMyProductsComponent } from './pages/seller-my-products/seller-my-
 import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 import { SocialCallbackComponent } from './pages/auth-callback/auth-callback.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
+import { AddReviewComponent } from './pages/add-review/add-review.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +33,8 @@ export const routes: Routes = [
   { path: 'app-checkout', component: CheckoutComponent },
   { path: 'app-product/:id', component: ProductDetailComponent },
   { path: 'app-confirmation-stripe', component: ConfirmationSuccessComponent },
+  { path: 'app-reset-password', component: ResetPasswordComponent },
+  { path: 'edit-product/:id', component: EditProductComponent },
   {
     path: 'app-my-orders',
     loadComponent: () =>
@@ -38,6 +43,10 @@ export const routes: Routes = [
       ),
   },
 
+  {
+    path: 'add-review',
+    component: AddReviewComponent,
+  },
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
@@ -132,6 +141,21 @@ export const routes: Routes = [
       ),
     canActivate: [AuthGuard],
     data: { roles: ['admin'] },
+  },
+
+  {
+    path: 'admin/sellers',
+    loadComponent: () =>
+      import('./pages/admin-sellers/admin-sellers.component').then(
+        (c) => c.AdminSellersComponent
+      ),
+  },
+  {
+    path: 'pending-approval',
+    loadComponent: () =>
+      import('./components/pending-approval/pending-approval.component').then(
+        (m) => m.PendingApprovalComponent
+      ),
   },
 
   {

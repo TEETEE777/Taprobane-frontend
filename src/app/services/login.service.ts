@@ -21,4 +21,7 @@ export class LoginService {
       },
     });
   }
+  resetPassword(data: { email: string; password: string }) {
+    return this.http.post('/api/users/reset-password', data);
+  }
 }

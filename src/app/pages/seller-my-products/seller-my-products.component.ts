@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SellerNavbarComponent } from '../../components/seller Navbar/seller-navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-seller-my-products',
   standalone: true,
-  imports: [CommonModule, SellerNavbarComponent, FooterComponent],
+  imports: [CommonModule, SellerNavbarComponent, FooterComponent, RouterModule],
   templateUrl: './seller-my-products.component.html',
   styleUrls: ['./seller-my-products.component.css'],
 })

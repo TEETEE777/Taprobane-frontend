@@ -1,0 +1,35 @@
+<div class="pending-container">
+  <img src="assets/logo.jpg" alt="TAPROBANE" class="logo" />
+
+  <h2>🎉 Registration Successful!</h2>
+
+  <p class="message">
+    Hello <strong>{{ fullName }}</strong> (<em>{{ email }}</em
+    >)!<br />
+    Your seller account is currently
+    <span class="status pending">pending admin approval</span>.
+  </p>
+
+  <p class="sub-message">
+    You can check back anytime to see if your account has been approved.
+  </p>
+
+  <button
+    pButton
+    type="button"
+    label="Check Status"
+    (click)="checkApprovalStatus()"
+    [disabled]="checking"
+    class="primary-btn"
+  ></button>
+
+  <p class="status-message">{{ statusMessage }}</p>
+
+  <button
+    pButton
+    type="button"
+    label="Back to Login"
+    (click)="goToLogin()"
+    class="secondary-btn"
+  ></button>
+</div>

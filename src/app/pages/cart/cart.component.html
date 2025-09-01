@@ -12,9 +12,11 @@
     <div *ngFor="let item of cartItems; let i = index" class="cart-item">
       <button class="remove-btn" (click)="removeItem(item.productId)">×</button>
       <img
-        [src]="item.image || '/assets/placeholder.png'"
+        class="product-img"
+        [src]="'http://localhost:3000' + item.image"
         alt="Product image"
       />
+
       <div class="item-details">
         <p class="product-name">{{ item.name }}</p>
         <div class="detail-grid">

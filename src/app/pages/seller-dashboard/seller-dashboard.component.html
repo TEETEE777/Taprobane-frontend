@@ -1,27 +1,99 @@
 <app-seller-navbar></app-seller-navbar>
+
 <div class="seller-dashboard">
   <h2 class="title">Seller Dashboard</h2>
   <p class="subtitle">
     Manage your products, view orders, and track performance
   </p>
 
-  <div class="dashboard-options">
-    <div class="card" (click)="navigateTo('seller-products')" tabindex="0">
-      <i class="pi pi-box icon"></i>
-      <h3>My Products</h3>
-      <p>View and manage your listed items</p>
+  <div *ngIf="loading" class="loading">Loading stats...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="summary && !loading">
+    <!-- Stats Cards -->
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <p>${{ summary.totalRevenue }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <p>{{ summary.totalOrders }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Products</h3>
+        <p>{{ summary.totalProducts }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Top Product</h3>
+        <p>
+          {{ summary.topProduct?.name }} ({{ summary.topProduct?.sold }} sold)
+        </p>
+      </div>
     </div>
 
-    <div class="card" (click)="navigateTo('seller-add-product')" tabindex="0">
-      <i class="pi pi-plus-circle icon"></i>
-      <h3>Add Product</h3>
-      <p>Upload new eco-friendly items</p>
+    <!-- Download CSV Button -->
+    <div class="download-container">
+      <button (click)="downloadReport()" class="download-btn">
+        Download CSV Report
+      </button>
     </div>
 
-    <div class="card" (click)="navigateTo('seller-orders')" tabindex="0">
-      <i class="pi pi-truck icon"></i>
-      <h3>My Orders</h3>
-      <p>Track customer orders and delivery</p>
+    <!-- Sales Chart -->
+    <div class="chart-section" *ngIf="summary?.productSales && showSalesCanvas">
+      <h3>Sales per Product</h3>
+      <div class="chart-wrapper">
+        <canvas #salesCanvas></canvas>
+      </div>
+    </div>
+
+    <!-- Recent Orders Table -->
+    <div class="recent-orders" *ngIf="recentOrders?.length">
+      <h3>Recent Orders</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of recentOrders">
+            <td>{{ order._id | slice : 0 : 6 }}...</td>
+            <td>{{ order.items[0]?.name }}</td>
+            <td>{{ order.items[0]?.quantity }}</td>
+            <td>${{ order.items[0]?.price * order.items[0]?.quantity }}</td>
+            <td [ngClass]="order.status.toLowerCase()">{{ order.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Dashboard Action Cards -->
+    <div class="dashboard-options">
+      <div class="card" (click)="navigateTo('seller-products')" tabindex="0">
+        <i class="pi pi-box icon"></i>
+        <h3>My Products</h3>
+        <p>View and manage your listed items</p>
+      </div>
+
+      <div class="card" (click)="navigateTo('seller-add-product')" tabindex="0">
+        <i class="pi pi-plus-circle icon"></i>
+        <h3>Add Product</h3>
+        <p>Upload new eco-friendly items</p>
+      </div>
+
+      <div class="card" (click)="navigateTo('seller-orders')" tabindex="0">
+        <i class="pi pi-truck icon"></i>
+        <h3>My Orders</h3>
+        <p>Track customer orders and delivery</p>
+      </div>
     </div>
   </div>
 </div>

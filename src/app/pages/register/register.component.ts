@@ -48,8 +48,15 @@ export class RegisterComponent {
 
     this.registerService.registerUser(userData).subscribe(
       (response) => {
-        alert('User registered successfully');
-        this.router.navigate(['/app-login']);
+        if (this.role === 'seller') {
+          // Redirect sellers to Pending Approval page
+          this.router.navigate(['/pending-approval'], {
+            state: { fullName: this.fullName, email: this.email },
+          });
+        } else {
+          // Buyers/Admins go to login
+          this.router.navigate(['/app-login']);
+        }
       },
       () => {
         alert('Error registering user');

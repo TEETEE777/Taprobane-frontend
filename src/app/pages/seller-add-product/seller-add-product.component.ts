@@ -11,11 +11,18 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { SellerNavbarComponent } from '../../components/seller Navbar/seller-navbar.component';
 
 @Component({
   selector: 'app-seller-add-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ToastModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastModule,
+    SellerNavbarComponent,
+  ],
   providers: [MessageService],
   templateUrl: './seller-add-product.component.html',
   styleUrls: ['./seller-add-product.component.css'],

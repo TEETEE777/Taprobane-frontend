@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:3000/api/admin'; // adjust if needed
+  private apiUrl = 'http://localhost:3000/api/admin';
+  private sellerUrl = 'http://localhost:3000/api/sellers';
 
   constructor(private http: HttpClient) {}
 
@@ -22,5 +23,21 @@ export class AdminService {
 
   toggleUserStatus(userId: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/users/${userId}/toggle`, {});
+  }
+
+  getSellers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.sellerUrl}/`);
+  }
+
+  approveSeller(sellerId: string): Observable<any> {
+    return this.http.put(`${this.sellerUrl}/${sellerId}/approve`, {});
+  }
+
+  rejectSeller(sellerId: string): Observable<any> {
+    return this.http.put(`${this.sellerUrl}/${sellerId}/reject`, {});
+  }
+
+  toggleSellerStatus(sellerId: string): Observable<any> {
+    return this.http.put(`${this.sellerUrl}/${sellerId}/toggle`, {});
   }
 }

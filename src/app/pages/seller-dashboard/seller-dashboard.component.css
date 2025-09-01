@@ -1,85 +1,268 @@
+/* -------------------- SELLER DASHBOARD -------------------- */
 .seller-dashboard {
   padding: 60px 40px;
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    #f0fdf4,
-    #e3fdf9
-  ); /* subtle pastel gradient */
-  min-height: 85vh;
+  background: linear-gradient(145deg, #f0fdf4, #e3fdf9);
+  min-height: 90vh;
   font-family: "Montserrat", sans-serif;
   color: #2c2c2c;
 }
 
+/* Titles */
 .title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
+  color: #1f5f4a;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #555;
+  margin-bottom: 60px;
+  max-width: 650px;
+  margin-inline: auto;
+  line-height: 1.5;
+}
+
+/* -------------------- STATS CARDS -------------------- */
+.stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px 35px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d0e5db;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(40, 169, 139, 0.15);
+}
+
+.stat-card h3 {
+  font-size: 1.3rem;
   color: #1f5f4a;
   margin-bottom: 12px;
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 50px;
-  max-width: 600px;
+.stat-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #28a98b;
+}
+
+/* -------------------- DOWNLOAD BUTTON -------------------- */
+.download-container {
+  margin-top: 40px;
+}
+
+.download-btn {
+  padding: 12px 25px;
+  background: linear-gradient(120deg, #28a98b, #1f7a64);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(40, 169, 139, 0.3);
+  transition: all 0.25s ease;
+}
+
+.download-btn:hover {
+  background: linear-gradient(120deg, #1f7a64, #28a98b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(40, 169, 139, 0.35);
+}
+
+/* -------------------- CHART SECTION -------------------- */
+.chart-section {
+  margin-top: 50px;
+  max-width: 900px;
   margin-inline: auto;
 }
 
+.chart-section h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f5f4a;
+  margin-bottom: 25px;
+}
+
+.chart-wrapper {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* Important: fixes canvas collapse */
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* -------------------- RECENT ORDERS TABLE -------------------- */
+.recent-orders {
+  margin-top: 60px;
+  text-align: left;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.recent-orders h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f5f4a;
+  margin-bottom: 20px;
+}
+
+.recent-orders table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.recent-orders th,
+.recent-orders td {
+  padding: 14px 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.recent-orders th {
+  background-color: #f0fdf4;
+  color: #1f5f4a;
+  font-weight: 600;
+}
+
+.recent-orders tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background 0.25s ease;
+}
+
+.recent-orders tbody tr:hover {
+  background-color: #e8fdf5;
+}
+
+.recent-orders td {
+  font-weight: 500;
+}
+
+.recent-orders td span {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Status styling */
+.recent-orders td.active {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.recent-orders td.pending {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.recent-orders td.cancelled,
+.recent-orders td.blocked {
+  color: #f44336;
+  font-weight: 600;
+}
+
+/* -------------------- DASHBOARD ACTION CARDS -------------------- */
 .dashboard-options {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 50px auto 0;
 }
 
 .card {
   background-color: #ffffff;
   border-radius: 20px;
   padding: 30px 24px;
-  width: 280px;
+  width: 260px;
   cursor: pointer;
   transition: all 0.35s ease;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   border: 1.5px solid #d0e5db;
   text-align: center;
-  color: #2c2c2c;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .card:hover,
 .card:focus {
   background-color: #e8fdf5;
   border-color: #28a98b;
-  box-shadow: 0 12px 28px rgba(40, 169, 139, 0.15);
-  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 28px rgba(40, 169, 139, 0.2);
+  transform: translateY(-5px) scale(1.03);
   outline: none;
 }
 
 .card h3 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #1f5f4a;
 }
 
 .card p {
-  font-size: 0.96rem;
-  color: #666;
+  font-size: 1rem;
+  color: #555;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .card .icon {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   color: #28a98b;
   background-color: #e0f7f1;
-  padding: 16px;
+  padding: 18px;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(40, 169, 139, 0.1);
+  box-shadow: 0 6px 14px rgba(40, 169, 139, 0.1);
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 1024px) {
+  .stats {
+    justify-content: center;
+  }
+
+  .dashboard-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recent-orders table,
+  .chart-wrapper {
+    width: 95%;
+  }
 }

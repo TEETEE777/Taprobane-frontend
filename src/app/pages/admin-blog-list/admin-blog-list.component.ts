@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AdminNavbarComponent } from '../../components/admin-navbar/admin-navbar.component';
 
 @Component({
   selector: 'app-admin-blog-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AdminNavbarComponent],
   templateUrl: './admin-blog-list.component.html',
   styleUrls: ['./admin-blog-list.component.css'],
 })

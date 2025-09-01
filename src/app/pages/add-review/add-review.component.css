@@ -1,0 +1,103 @@
+/* Form container styles */
+.review-form {
+  background-color: #eaf7f5;
+  border-radius: 25px;
+  padding: 35px 30px;
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.review-form:hover {
+  transform: translateY(-3px);
+}
+
+.review-form h2 {
+  text-align: center;
+  color: #28a98b;
+  font-size: 24px;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1b5e51;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid #b2dfdb;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #28a98b;
+  box-shadow: 0 0 8px rgba(40, 169, 139, 0.3);
+}
+
+textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* Button styles */
+button {
+  background-color: #28a98b;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #1b7b63;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(40, 169, 139, 0.3);
+}
+
+/* Star rating styles */
+.star-rating {
+  display: flex;
+  gap: 5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.star-rating span {
+  color: #ccc; /* default gray */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star-rating span.filled {
+  color: #fbc02d;
+  transform: scale(1.2);
+}
+
+.star-rating span:hover,
+.star-rating span:hover ~ span {
+  color: #ffeb3b;
+}

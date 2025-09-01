@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,15 +18,16 @@ import { CarouselModule } from 'primeng/carousel';
     FormsModule,
     NavbarComponent,
     FooterComponent,
-    ButtonModule, // PrimeNG Button
-    InputTextModule, // PrimeNG Input
-    CardModule, // PrimeNG Cards
-    CarouselModule, // PrimeNG Carousel
+    ButtonModule,
+    InputTextModule,
+    CardModule,
+    CarouselModule,
+    HttpClientModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   searchQuery: string = '';
 
   features = [
@@ -52,35 +54,29 @@ export class HomeComponent {
     },
   ];
 
-  reviews = [
-    {
-      name: 'Sarah Johnson',
-      comment: 'I absolutely love my organic cotton tote bag from Taprobane!',
-      rating: 5,
-      image: 'assets/sarah.png',
-    },
-    {
-      name: 'Mark Anderson',
-      comment: 'Amazing bamboo toothbrushes!',
-      rating: 4,
-      image: 'assets/mark.png',
-    },
-    {
-      name: 'Emily Lee',
-      comment: 'Hemp backpack is fantastic!',
-      rating: 5,
-      image: 'assets/emily.png',
-    },
-    {
-      name: 'Alex Green',
-      comment: 'Eco-friendly products changed my life!',
-      rating: 4,
-      image: 'assets/mark.png',
-    },
-  ];
-
-  /* Slider Logic */
+  reviews: any[] = []; // will be filled from backend
+  loadingReviews: boolean = false;
   currentSlide = 0;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.fetchReviews();
+  }
+
+  fetchReviews() {
+    this.loadingReviews = true;
+    this.http.get<any[]>('http://localhost:3000/api/reviews/all').subscribe({
+      next: (data) => {
+        this.reviews = data;
+        this.loadingReviews = false;
+      },
+      error: (err) => {
+        console.error('Failed to fetch reviews', err);
+        this.loadingReviews = false;
+      },
+    });
+  }
 
   prevSlide() {
     const slider = document.querySelector('.reviews-slider') as HTMLElement;
@@ -94,6 +90,5 @@ export class HomeComponent {
 
   search() {
     console.log('Searching for:', this.searchQuery);
-    // Implement search functionality later
   }
 }

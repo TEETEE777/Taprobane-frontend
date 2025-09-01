@@ -3,28 +3,45 @@
   margin: 40px auto;
   padding: 20px;
   font-family: "Montserrat", sans-serif;
+  color: #333;
+}
+
+.seller-orders-container h2 {
+  text-align: center;
+  color: #1f5f4a;
+  margin-bottom: 30px;
+  font-weight: 700;
 }
 
 .order-card {
-  border: 2px solid #28a98b;
-  padding: 20px;
-  border-radius: 12px;
+  border: none;
+  padding: 25px 30px;
+  border-radius: 20px;
   margin-bottom: 30px;
-  background-color: #f9fefc;
-  box-shadow: 0 2px 8px rgba(40, 169, 139, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .status-badges {
   display: flex;
   gap: 10px;
-  margin: 10px 0;
+  margin: 15px 0;
+  flex-wrap: wrap;
 }
 
 .badge {
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 6px 14px;
+  border-radius: 50px;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
 }
 
 /* Shipping Statuses */
@@ -33,15 +50,15 @@
   color: #856404;
 }
 .status.processing {
-  background-color: #d1ecf1;
-  color: #0c5460;
-}
-.status.shipped {
   background-color: #cce5ff;
   color: #004085;
 }
+.status.shipped {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
 .status.in\ transit {
-  background-color: #d6d8d9;
+  background-color: #e2e3e5;
   color: #383d41;
 }
 .status.delivered {
@@ -63,38 +80,68 @@
   color: #721c24;
 }
 
-/* Styled select */
+/* Styled shipping dropdown */
 .shipping-dropdown {
   display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
+  width: 80px;
+  padding: 8px 14px;
+  border-radius: 30px;
   border: 1px solid #28a98b;
-  background-color: #f9fefc;
+  background-color: #f0fef9;
   cursor: pointer;
   position: relative;
-  font-weight: bold;
+  font-weight: 600;
+  margin-left: 10px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.shipping-dropdown:hover {
+  background-color: #e0f8ef;
 }
 
 .shipping-dropdown ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding-right: 5px;
   position: absolute;
-  top: 110%;
+  top: 120%;
   left: 0;
   background-color: #fff;
   border: 1px solid #28a98b;
   border-radius: 12px;
   width: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   z-index: 10;
+  overflow: hidden;
 }
 
 .shipping-dropdown ul li {
-  padding: 8px 12px;
+  padding: 10px 14px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .shipping-dropdown ul li:hover {
-  background-color: #e0f2eb;
+  background-color: #dff6ef;
+  color: #1f5f4a;
+  font-weight: 600;
+}
+
+.order-card ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.order-card ul li {
+  margin-bottom: 5px;
+}
+
+.order-card p,
+.order-card strong {
+  margin: 5px 0;
+}
+
+.order-card strong {
+  font-weight: 600;
+  color: #1f5f4a;
 }

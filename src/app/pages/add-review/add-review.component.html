@@ -1,0 +1,60 @@
+<div class="review-form">
+  <h2>Leave a Review</h2>
+  <form (ngSubmit)="submitReview()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="userEmail"
+        name="email"
+        placeholder="Your email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Rating</label>
+      <div class="star-rating">
+        <span
+          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+          (click)="setRating(i + 1)"
+          [class.filled]="i < rating"
+          >★</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea
+        id="comment"
+        [(ngModel)]="comment"
+        name="comment"
+        placeholder="Write your review..."
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit">Submit Review</button>
+  </form>
+</div>
+
+<!-- Existing Reviews -->
+<div class="reviews-section" *ngIf="reviews.length">
+  <h2>Customer Reviews</h2>
+  <div class="review-card" *ngFor="let r of reviews">
+    <div class="review-header">
+      <strong>{{ r.userEmail }}</strong>
+      <div class="star-rating">
+        <span
+          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+          [class.filled]="i < r.rating"
+          >★</span
+        >
+      </div>
+    </div>
+    <p>{{ r.comment }}</p>
+    <small>{{ r.createdAt | date : "medium" }}</small>
+  </div>
+</div>

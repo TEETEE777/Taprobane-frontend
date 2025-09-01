@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -44,6 +46,7 @@ interface DecodedToken {
     ToastModule,
     HttpClientModule,
     RecaptchaModule,
+    RouterModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

@@ -1,0 +1,162 @@
+/* Container */
+.sellers-page {
+  padding: 30px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Table Wrapper */
+.table-wrapper {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+/* Sellers Table */
+.sellers-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.sellers-table th,
+.sellers-table td {
+  padding: 14px 12px;
+  text-align: left;
+}
+
+.sellers-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.sellers-table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sellers-table tr:hover {
+  background-color: #f5f5f5;
+  transition: 0.2s;
+}
+
+/* Status Tags */
+.status-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  min-width: 80px;
+}
+
+.status-tag.pending {
+  background-color: #ff9800;
+}
+
+.status-tag.approved {
+  background-color: #4caf50;
+}
+
+.status-tag.rejected {
+  background-color: #f44336;
+}
+
+/* Action Buttons */
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.sellers-table .approve {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sellers-table .reject {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sellers-table .block {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sellers-table .unblock {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sellers-table button:hover {
+  opacity: 0.85;
+}
+
+/* Loading / No Data */
+.loading,
+.no-data {
+  font-size: 16px;
+  font-weight: 500;
+  color: #777;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sellers-table th,
+  .sellers-table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
