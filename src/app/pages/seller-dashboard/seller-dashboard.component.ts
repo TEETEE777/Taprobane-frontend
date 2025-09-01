@@ -12,6 +12,10 @@ import { SellerService } from '../../services/seller.service';
 import { UserService } from '../../services/user.service';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+(pdfMake as any).vfs = (pdfFonts as any).vfs || (pdfFonts as any).pdfMake?.vfs;
 // Register Chart.js components
 Chart.register(...registerables);
 
@@ -115,16 +119,59 @@ export class SellerDashboardComponent implements OnInit, AfterViewInit {
   }
 
   downloadReport() {
-    const sellerId = this.userService.getUserId();
-    if (!sellerId) return;
+    if (!this.summary) return;
 
-    this.sellerService.exportSellerReport(sellerId).subscribe((blob) => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'seller_report.csv';
-      a.click();
-      window.URL.revokeObjectURL(url);
-    });
+    const docDefinition: any = {
+      content: [
+        { text: 'Seller Report', style: 'header' },
+        {
+          text: `Generated on: ${new Date().toLocaleString()}`,
+          style: 'subheader',
+        },
+        { text: '\n' },
+
+        {
+          table: {
+            widths: ['*', '*'],
+            body: [
+              ['Total Revenue', `Rs ${this.summary.totalRevenue}`],
+              ['Total Orders', this.summary.totalOrders],
+              ['Total Products', this.summary.totalProducts],
+              [
+                'Top Product',
+                this.summary.topProduct
+                  ? `${this.summary.topProduct.name} (${this.summary.topProduct.sold} sold)`
+                  : 'N/A',
+              ],
+            ],
+          },
+        },
+
+        { text: '\nRecent Orders', style: 'subheader' },
+        {
+          table: {
+            widths: ['auto', '*', 'auto', 'auto', 'auto'],
+            body: [
+              ['Order ID', 'Product', 'Quantity', 'Total', 'Status'],
+              ...this.recentOrders.map((order) => [
+                order._id.slice(0, 6) + '...',
+                order.items[0]?.name || 'N/A',
+                order.items[0]?.quantity || 0,
+                `Rs ${
+                  (order.items[0]?.price || 0) * (order.items[0]?.quantity || 0)
+                }`,
+                order.status,
+              ]),
+            ],
+          },
+        },
+      ],
+      styles: {
+        header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10] },
+        subheader: { fontSize: 14, bold: true, margin: [0, 10, 0, 5] },
+      },
+    };
+
+    pdfMake.createPdf(docDefinition).download('seller_report.pdf');
   }
 }
