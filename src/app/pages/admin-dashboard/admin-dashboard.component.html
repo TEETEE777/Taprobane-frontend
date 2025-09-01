@@ -1,7 +1,7 @@
 <app-admin-navbar></app-admin-navbar>
 
 <div class="admin-dashboard">
-  <h2 class="dashboard-title">📊 Admin Dashboard</h2>
+  <h2 class="dashboard-title">Admin Dashboard</h2>
 
   <!-- Stats Section -->
   <div class="stats">
@@ -50,7 +50,7 @@
   <hr class="divider" />
 
   <!-- Users Table -->
-  <h3 class="section-title">👥 User Management</h3>
+  <h3 class="section-title">User Management</h3>
   <div class="table-container" *ngIf="!loading; else loadingTpl">
     <table class="users-table">
       <thead>
@@ -92,6 +92,6 @@
   </div>
 
   <ng-template #loadingTpl>
-    <p class="loading">⏳ Loading users...</p>
+    <p class="loading">Loading users...</p>
   </ng-template>
 </div>

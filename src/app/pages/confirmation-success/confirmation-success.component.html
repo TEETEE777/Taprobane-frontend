@@ -8,10 +8,8 @@
     <div class="summary-section">
       <h3>Order Summary</h3>
       <div class="order-item" *ngFor="let item of order?.items">
-        <img
-          [src]="item.image || '/assets/placeholder.png'"
-          alt="Product image"
-        />
+        <img [src]="'http://localhost:3000' + item.image" alt="Product image" />
+
         <div>
           <p>{{ item.name }} (x{{ item.quantity }})</p>
           <p>LKR {{ item.price * item.quantity }}</p>
